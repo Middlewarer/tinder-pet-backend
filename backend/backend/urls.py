@@ -6,7 +6,7 @@ from django.contrib import admin
 
 # Импорты твоих вьюх
 from accounts.views import RegisterView, ProfileView
-from animals.views import SwipeAnimalsView
+from animals.views import SwipeAnimalsView, OwnerAnimalDetailView, OwnerAnimalsListView
 from interactions.views import LikeView, AcceptMatchView
 from chats.views import MessageListView
 
@@ -37,4 +37,7 @@ urlpatterns = [
     
     # Chats
     path('api/chats/<int:chat_id>/messages/', MessageListView.as_view()),
+
+    path('api/my-animals/', OwnerAnimalsListView.as_view(), name='my-animals'),
+    path('api/my-animals/<int:pk>/', OwnerAnimalDetailView.as_view(), name='my-animal-detail'),
 ]
