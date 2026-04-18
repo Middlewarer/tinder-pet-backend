@@ -4,8 +4,8 @@ from animals.models import Animal
 
 class Interaction(models.Model):
     TYPE_CHOICES = (('like', 'like'), ('dislike', 'dislike'))
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='interactions')
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='interactions')
     type = models.CharField(max_length=10, choices=TYPE_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -20,10 +20,8 @@ class Match(models.Model):
     )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='matches_as_user')
-    owner = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='matches_as_owner')
-    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='matches_as_owner')
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='matches')
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    

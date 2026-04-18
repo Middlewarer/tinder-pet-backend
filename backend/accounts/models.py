@@ -23,13 +23,5 @@ class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True, choices=DEFAULT_CHOICES)
 
 class Preference(models.Model):
-    DEFAULT_CHOICES = (
-        ('calm', 'спокойный'),
-        ('active', 'активный'),
-        ('kid_friendly', 'для детей'),
-        ('guide', 'поводырь')
-    )
-
-
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='preferences')
     preferred_tags = models.ManyToManyField(Tag, blank=True)

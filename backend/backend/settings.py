@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,12 +27,20 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
+AUTH_USER_MODEL = 'accounts.User'
+
 
 
 ALLOWED_HOSTS = []
 
 
-# Application definition
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",      
+    "http://127.0.0.1:5173",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -47,6 +56,8 @@ INSTALLED_APPS = [
 
     'drf_yasg',
 
+    'corsheaders',
+
     'rest_framework',
     'rest_framework_simplejwt',
 ]
@@ -58,6 +69,8 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
