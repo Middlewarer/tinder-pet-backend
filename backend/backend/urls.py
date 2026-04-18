@@ -10,6 +10,11 @@ from interactions.views import LikeView, AcceptMatchView, PendingMatchesView
 from interactions.views import AcceptedMatchesView, RejectMatchView, SentLikesView, ReceivedLikesView
 from chats.views import MessageListView, ChatListView, ChatDetailView, ChatDeleteView
 
+from events.views import (
+    EventListView, EventDetailView, EventParticipantView,
+    EventParticipantsListView, EventParticipantStatusView, EventChatMessagesView
+)
+
 from django.contrib import admin
 
 schema_view = get_schema_view(
@@ -61,4 +66,16 @@ urlpatterns = [
     path('api/chats/<int:pk>/', ChatDetailView.as_view(), name='chat-detail'),
     path('api/chats/<int:pk>/delete/', ChatDeleteView.as_view(), name='chat-delete'),
     path('api/chats/<int:chat_id>/messages/', MessageListView.as_view(), name='chat-messages'),
+
+     path('api/events/', EventListView.as_view(), name='event-list'),
+    path('api/events/<int:pk>/', EventDetailView.as_view(), name='event-detail'),
+    
+    # Участники
+    path('api/events/<int:event_id>/participate/', EventParticipantView.as_view(), name='event-participate'),
+    path('api/events/<int:event_id>/participants/', EventParticipantsListView.as_view(), name='event-participants'),
+    path('api/events/<int:event_id>/participants/<int:participant_id>/status/', 
+         EventParticipantStatusView.as_view(), name='event-participant-status'),
+    
+    # Чат мероприятия
+    path('api/events/<int:event_id>/chat/', EventChatMessagesView.as_view(), name='event-chat'),
 ]
