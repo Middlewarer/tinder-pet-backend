@@ -10,10 +10,19 @@ class MessageSerializer(serializers.ModelSerializer):
         fields = ['id', 'chat', 'sender', 'sender_detail', 'text', 'created_at']
         read_only_fields = ['id', 'created_at']
 
+
 class ChatSerializer(serializers.ModelSerializer):
     messages = MessageSerializer(many=True, read_only=True)
+    animal_name = serializers.CharField(source='match.animal.name', read_only=True)
+    other_user = serializers.SerializerMethodField()
     
     class Meta:
         model = Chat
-        fields = ['id', 'match', 'messages', 'created_at']
+        fields = ['id', 'match', 'animal_name', 'other_user', 'messages', 'created_at']
         read_only_fields = ['id', 'created_at']
+    
+    def get_other_user(self, obj):
+        request = self.context.get('request')
+        if request and request.user == obj.match.user:
+            return obj.match.owner.username
+        return obj.match.user.username
