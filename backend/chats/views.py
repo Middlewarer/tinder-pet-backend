@@ -5,7 +5,6 @@ from .serializers import MessageSerializer
 
 class MessageListView(generics.ListCreateAPIView):
     serializer_class = MessageSerializer
-    permission_classes = [permissions.IsAuthenticated]
     
     def get_queryset(self):
         chat_id = self.kwargs['chat_id']

@@ -27,7 +27,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'role', 'password', 'preferences']
+        fields = [
+            'id', 'username', 'email', 'role', 'password', 
+            'preferences', 'bio', 'avatar', 'phone'  
+        ]
         read_only_fields = ['id']
 
     def create(self, validated_data):
@@ -35,8 +38,5 @@ class UserSerializer(serializers.ModelSerializer):
         user = User(**validated_data)
         user.set_password(password)
         user.save()
-        
-        # Создаём пустые предпочтения для пользователя
         Preference.objects.create(user=user)
-        
         return user

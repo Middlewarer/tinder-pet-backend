@@ -8,7 +8,6 @@ from .serializers import AnimalSerializer
 
 class SwipeAnimalsView(generics.ListAPIView):
     serializer_class = AnimalSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user

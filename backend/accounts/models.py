@@ -9,6 +9,10 @@ class User(AbstractUser):
 
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='user')
 
+    bio = models.TextField(max_length=500, blank=True, null=True) 
+    avatar = models.URLField(blank=True, null=True)  
+    phone = models.CharField(max_length=20, blank=True, null=True)  
+
     groups = models.ManyToManyField('auth.Group', related_name='tinder_user_set', blank=True)
     user_permissions = models.ManyToManyField('auth.Permission', related_name='tinder_user_permissions', blank=True)
 

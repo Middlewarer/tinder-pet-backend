@@ -6,7 +6,6 @@ from animals.models import Animal
 from chats.models import Chat
 
 class LikeView(views.APIView):
-    permission_classes = [IsAuthenticated]
     
     def post(self, request):
         user = request.user
@@ -40,8 +39,7 @@ class LikeView(views.APIView):
         return Response({'match_id': match.id, 'status': 'pending'})
 
 class AcceptMatchView(views.APIView):
-    permission_classes = [IsAuthenticated]
-    
+
     def post(self, request, match_id):
         try:
             match = Match.objects.get(id=match_id, owner=request.user, status='pending')
