@@ -16,6 +16,9 @@ class User(AbstractUser):
     groups = models.ManyToManyField('auth.Group', related_name='tinder_user_set', blank=True)
     user_permissions = models.ManyToManyField('auth.Permission', related_name='tinder_user_permissions', blank=True)
 
+    def __str__(self):
+        return self.username
+
 class Tag(models.Model):
     DEFAULT_CHOICES = (
         ('calm', 'спокойный'),
@@ -26,6 +29,14 @@ class Tag(models.Model):
     
     name = models.CharField(max_length=50, unique=True, choices=DEFAULT_CHOICES)
 
+    def __str__(self):
+        return self.name
+
 class Preference(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='preferences')
     preferred_tags = models.ManyToManyField(Tag, blank=True)
+    
+    def __str__(self):
+        return f'{self.user.username} {self.preferred_tags}'
+
+    

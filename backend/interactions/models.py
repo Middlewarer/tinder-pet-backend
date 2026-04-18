@@ -12,6 +12,9 @@ class Interaction(models.Model):
     class Meta:
         unique_together = ('user', 'animal')
 
+    def __str__(self):
+        return f'{self.user.username} with animal {self.animal.name}'
+
 class Match(models.Model):
     STATUS_CHOICES = (
         ('pending', 'Ожидает'),
@@ -25,3 +28,6 @@ class Match(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'user: {self.user.username} owner: {self.owner.username}'

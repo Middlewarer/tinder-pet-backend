@@ -8,6 +8,9 @@ class Animal(models.Model):
     description = models.TextField()
     photo = models.ImageField(upload_to='pets/pet_images/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
     
 class Characteristic(models.Model):
     DEFAULT_CHOICES = (
@@ -19,3 +22,6 @@ class Characteristic(models.Model):
 
     pet = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='characteristics')
     character = models.CharField(max_length=20, choices=DEFAULT_CHOICES, default='calm')
+
+    def __str__(self):
+        return f'{self.pet.name} + {self.character}'
