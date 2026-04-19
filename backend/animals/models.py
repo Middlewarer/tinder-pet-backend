@@ -6,7 +6,7 @@ class Animal(models.Model):
     name = models.CharField(max_length=100)
     years_of_age = models.IntegerField(default=1)
     description = models.TextField()
-    photo = models.ImageField(upload_to='pets/pet_images/', blank=True, null=True)
+    photo_url = models.URLField(blank=True, null=True, verbose_name='Ссылка на фото')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

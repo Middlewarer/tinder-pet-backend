@@ -11,5 +11,5 @@ class AnimalSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Animal
-        fields = ['id', 'owner', 'name', 'years_of_age', 'description', 'photo', 'characteristics']
+        fields = ['id', 'owner', 'name', 'years_of_age', 'description', 'photo_url', 'characteristics']
         read_only_fields = ['id', 'owner', 'created_at']

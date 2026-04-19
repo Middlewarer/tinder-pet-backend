@@ -30,6 +30,10 @@ SECRET_KEY = config('SECRET_KEY')
 
 import dj_database_url
 
+import os
+from pathlib import Path
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
@@ -72,15 +76,6 @@ INSTALLED_APPS = [
 
     'events.apps.EventsConfig',
 ]
-
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',  # только JSON
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -126,6 +121,13 @@ DATABASES = {
         conn_max_age=600
     )
 }
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Медиа-файлы
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Password validation

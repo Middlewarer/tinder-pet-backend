@@ -3,6 +3,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 from accounts.views import RegisterView, ProfileView, PreferenceView, TagListView
 from animals.views import SwipeAnimalsView, OwnerAnimalsListView, OwnerAnimalDetailView
 from animals.views import CreateAnimalView, UpdateAnimalView, DeleteAnimalView
@@ -80,3 +83,6 @@ urlpatterns = [
     # Чат мероприятия
     path('api/events/<int:event_id>/chat/', EventChatMessagesView.as_view(), name='event-chat'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

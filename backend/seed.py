@@ -32,18 +32,18 @@ DESCRIPTIONS = {
 
 PHOTOS = {
     'dog': [
-        'https://images.pexels.com/photos/4587956/german-shepherd-dog-outdoors-animal-4587956.jpeg',
-        'https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg',
-        'https://images.pexels.com/photos/33053/dog-beagle-whistle-animal.jpg',
-        'https://images.pexels.com/photos/1851164/pexels-photo-1851164.jpeg',
-        'https://images.pexels.com/photos/2089679/pexels-photo-2089679.jpeg',
+        'https://barkingmadphoto.co.uk/wp-content/uploads/2023/03/retriever-studio-indoor-dog-portrait-stevelowreyphotography.co_.uk-1.jpg',
+        'https://i.pinimg.com/736x/29/01/1a/29011abd0d122d9794e19e0a01a8efd7.jpg',
+        'https://images.squarespace-cdn.com/content/v1/5922805817bffc67e95489f5/1625540754204-WKBJ41FFGQY8S9A533ZE/Ray+the+blind+lab+for+website+-+1+July+2021-2025.jpg',
+        'https://img.freepik.com/premium-photo/photo-cute-happy-puppy-dog-running-go-pro-wide-shot_900368-520.jpg',
+        'https://img.freepik.com/premium-photo/portrait-happy-dog_1268-24004.jpg',
     ],
     'cat': [
-        'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg',
-        'https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg',
-        'https://images.pexels.com/photos/127028/pexels-photo-127028.jpeg',
-        'https://images.pexels.com/photos/1056251/pexels-photo-1056251.jpeg',
-        'https://images.pexels.com/photos/3777622/pexels-photo-3777622.jpeg',
+        'https://tse2.mm.bing.net/th/id/OIP.UZ21n3xoDEyWD3mYyAPljQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3',
+        'https://dinoanimals.com/wp-content/uploads/2023/03/Domestic-cat-35.jpg',
+        'https://dinoanimals.com/wp-content/uploads/2023/03/Domestic-cat-34.jpg',
+        'https://i.pinimg.com/736x/a6/32/1f/a6321fa00d573b9fd9cc81eead8b7bbe.jpg',
+        'https://tse4.mm.bing.net/th/id/OIP.Ms2-hDu0teRbyrkeCiYVmgHaE8?w=768&h=512&rs=1&pid=ImgDetMain&o=7&rm=3',
     ]
 }
 
@@ -147,7 +147,7 @@ def create_animals(owners, animals_per_owner=3):
                 years_of_age=age,
                 description=f"{DESCRIPTIONS.get(selected_tags[0], 'Замечательный питомец')} "
                            f"Возраст: {age} лет. Привит, стерилизован.",
-                photo=photo
+                photo_url=photo
             )
             
             # Добавляем характеристики
